@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>随机键盘</title>
+	<script src="//cdn.bootcss.com/jquery/1.9.0/jquery.js"></script>	
+	<script>
+		$(function(){
+			var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];			
+			var nums = getArrayItems(arr, arr.length);
+			//console.log(nums);
+			//$(".nub_ggg a").css('background', "red");
+			//for(var i=0;i<nums.length;i++){
+				//$(".nub_ggg a").text(nums[i])
+				var a =	$(".nub_ggg a");
+				for(var j=0;j<a.length; j++){
+					console.log($(a[j]).text(nums[j]));
+				}
+			//}
+		})
+
+
+		//从一个给定的数组arr中,随机返回num个不重复项
+		function getArrayItems(arr, num) {
+			//新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
+			var temp_array = new Array();
+			for (var index in arr) {
+				temp_array.push(arr[index]);
+			}
+			//取出的数值项,保存在此数组
+			var return_array = new Array();
+			for (var i = 0; i<num; i++) {
+				//判断如果数组还有可以取出的元素,以防下标越界
+				if (temp_array.length>0) {
+					//在数组中产生一个随机索引
+					var arrIndex = Math.floor(Math.random()*temp_array.length);
+					//将此随机索引的对应的数组元素值复制出来
+					return_array[i] = temp_array[arrIndex];
+					//然后删掉此索引的数组元素,这时候temp_array变为新的数组
+					temp_array.splice(arrIndex, 1);
+				} else {
+					//数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
+					break;
+				}
+			}
+			return return_array;
+		}
+	</script>
+</head>
+<body>
+	<ul class="nub_ggg">
+		<li><a href="javascript:void(0);">1</a></li>
+		<li><a href="javascript:void(0);" class="zj_x">2</a></li>
+		<li><a href="javascript:void(0);">3</a></li>
+		<li><a href="javascript:void(0);">4</a></li>
+		<li><a href="javascript:void(0);" class="zj_x">5</a></li>
+		<li><a href="javascript:void(0);">6</a></li>
+		<li><a href="javascript:void(0);">7</a></li>
+		<li><a href="javascript:void(0);" class="zj_x">8</a></li>
+		<li><a href="javascript:void(0);">9</a></li>
+		<li><span></span></li>
+		<li><a href="javascript:void(0);" class="zj_x">0</a></li>
+	</ul>
+</body>
+</html>
